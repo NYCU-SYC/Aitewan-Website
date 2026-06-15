@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Icon } from "@/components/ui/Icon";
+import { assetPath } from "@/lib/asset-path";
 
 export type GalleryItem = { src: string; caption: string; alt?: string };
 
@@ -59,7 +60,7 @@ export function ImageGallery({
             <div className={`relative flex ${aspectCls} items-center justify-center overflow-hidden bg-gradient-to-br from-surface-soft to-white`}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={item.src}
+                src={assetPath(item.src)}
                 alt={item.alt ?? item.caption}
                 loading="lazy"
                 decoding="async"
@@ -106,7 +107,7 @@ export function ImageGallery({
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={items[active].src}
+                src={assetPath(items[active].src)}
                 alt={items[active].alt ?? items[active].caption}
                 className="max-h-[78vh] w-auto max-w-full rounded-lg object-contain shadow-2xl"
               />

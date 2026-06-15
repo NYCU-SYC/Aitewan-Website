@@ -5,6 +5,7 @@ import { useMemo, useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { MeshSurfaceSampler } from "three/examples/jsm/math/MeshSurfaceSampler.js";
+import { assetPath } from "@/lib/asset-path";
 
 /**
  * BrainPointCloud — point cloud sampled DIRECTLY from the real anatomical mesh
@@ -17,7 +18,7 @@ import { MeshSurfaceSampler } from "three/examples/jsm/math/MeshSurfaceSampler.j
  * slow expanding scan-ripple — an "AI detecting the lesion" feel.
  */
 
-const MODEL_PATH = "/models/brain.glb";
+const MODEL_PATH = assetPath("/models/brain.glb");
 useGLTF.preload(MODEL_PATH);
 
 /** Soft circular sprite so each point reads as a glowing dot. */

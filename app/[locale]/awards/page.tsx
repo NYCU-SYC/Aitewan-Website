@@ -9,6 +9,7 @@ import { ImageGallery } from "@/components/sections/ImageGallery";
 import { CTASection } from "@/components/sections/CTASection";
 import { getAwardsDetailed, getMilestones, getEvents } from "@/data/recognition";
 import { getCtas } from "@/data/site";
+import { assetPath } from "@/lib/asset-path";
 import { isLocale, type Locale } from "@/lib/i18n";
 
 export function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -60,7 +61,7 @@ export default async function AwardsPage({ params }: { params: Promise<{ locale:
                   {a.image ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
-                      src={a.image}
+                      src={assetPath(a.image)}
                       alt={a.title}
                       loading="lazy"
                       decoding="async"

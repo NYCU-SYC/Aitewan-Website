@@ -6,8 +6,9 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { useProgress } from "@react-three/drei";
 import { useBrainData, BrainPoints, TumorCluster } from "./BrainPointCloud";
 import { Starfield } from "./Starfield";
+import { assetPath } from "@/lib/asset-path";
 
-const MODEL_PATH = "/models/brain.glb";
+const MODEL_PATH = assetPath("/models/brain.glb");
 
 /* ---------- rotating brain group (auto-rotate + pointer parallax + float) ---------- */
 function BrainScene({ count, offsetX }: { count: number; offsetX: number }) {

@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/Button";
 import { LigerArchitecture } from "@/components/sections/LigerArchitecture";
 import { CTASection } from "@/components/sections/CTASection";
 import { getCtas } from "@/data/site";
+import { assetPath } from "@/lib/asset-path";
 import { isLocale, type Locale } from "@/lib/i18n";
 
 export function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -183,7 +184,7 @@ export default async function LigerPlatformPage({ params }: { params: Promise<{ 
           <div className="flex flex-col items-center gap-6 rounded-3xl border border-line bg-white p-6 text-center shadow-sm sm:flex-row sm:p-8 sm:text-left">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/images/certifications/tfda-liger-platform-008624.jpg"
+              src={assetPath("/images/certifications/tfda-liger-platform-008624.jpg")}
               alt={t("Liger 平台 TFDA 第二類醫療器材許可（008624）", "Liger platform TFDA Class II clearance (008624)")}
               loading="lazy"
               decoding="async"

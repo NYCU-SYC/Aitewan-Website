@@ -11,6 +11,7 @@ import {
   type Certificate,
   type CertKind,
 } from "@/data/certifications";
+import { assetPath } from "@/lib/asset-path";
 import type { Locale } from "@/lib/i18n";
 
 /** Certificate thumbnail with graceful fallback (placeholder until a scan exists). */
@@ -49,7 +50,7 @@ function CertThumb({
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      src={item.image}
+      src={assetPath(item.image)}
       alt={title}
       loading="lazy"
       decoding="async"
