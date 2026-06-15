@@ -1,0 +1,539 @@
+@import "tailwindcss";
+
+/*
+  AItewan / DeepBT Detector-Plus design tokens
+  Style: "Accessible & Ethical" + "Enterprise Gateway" (ui-ux-pro-max)
+  Palette: trust navy primary + clinical cyan AI accent (brand logo cyan)
+*/
+@theme {
+  /* Brand — trust navy / clinical blue */
+  --color-brand-50: #eef4ff;
+  --color-brand-100: #dbe6fe;
+  --color-brand-200: #bdd2fe;
+  --color-brand-300: #90b3fd;
+  --color-brand-400: #6090fa;
+  --color-brand-500: #3b6cf4;
+  --color-brand-600: #244ee6;
+  --color-brand-700: #1e3a8a;
+  --color-brand-800: #1b3170;
+  --color-brand-900: #172554;
+  --color-brand-950: #0f1b3d;
+
+  /* Accent — clinical cyan (AItewan logo) */
+  --color-accent-50: #ecfeff;
+  --color-accent-100: #cef9fe;
+  --color-accent-200: #a3f0fb;
+  --color-accent-300: #66e1f7;
+  --color-accent-400: #25c8ec;
+  --color-accent-500: #08abd2;
+  --color-accent-600: #0891b2;
+  --color-accent-700: #0e7490;
+  --color-accent-800: #155e75;
+  --color-accent-900: #164e63;
+
+  /* Phase 1 spec tokens（規格書 §6.1）— usable as bg-deep-navy, text-signal-blue… */
+  --color-deep-navy: #07111f;
+  --color-clinical-ink: #0e1726;
+  --color-signal-blue: #1a66ff;
+  --color-tensor-cyan: #00a9e8;
+  --color-medical-white: #f7fafc;
+  --color-slate-note: #42526e;
+  --color-valid-green: #0baa6e;
+  --color-review-amber: #e6a700;
+  --color-caution-red: #d92d20;
+
+  /* Neutrals / surfaces */
+  --color-ink: #0f172a;
+  --color-ink-soft: #334155;
+  --color-ink-muted: #5b6b82;
+  --color-surface: #ffffff;
+  --color-surface-soft: #f8fafc;
+  --color-surface-muted: #eef2f8;
+  --color-line: #e2e8f0;
+  --color-line-strong: #cbd5e1;
+
+  /* Type */
+  --font-sans: var(--font-inter), "PingFang TC", "Microsoft JhengHei",
+    "Noto Sans TC", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-sora), var(--font-inter), "PingFang TC",
+    "Microsoft JhengHei", "Noto Sans TC", system-ui, sans-serif;
+
+  /* Radius */
+  --radius-card: 1rem;
+
+  /* Easing */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-surface);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Visible, on-brand focus ring */
+  :where(a, button, input, textarea, select, [tabindex]):focus-visible {
+    outline: 3px solid var(--color-accent-500);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background-color: var(--color-accent-200);
+    color: var(--color-brand-900);
+  }
+
+  /* Slim brand scrollbar (WebKit + Firefox) */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-line-strong) transparent;
+  }
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background: linear-gradient(
+      to bottom,
+      var(--color-brand-300),
+      var(--color-accent-400)
+    );
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@layer components {
+  /* Subtle clinical grid for hero / section backgrounds */
+  .medical-grid {
+    background-image:
+      linear-gradient(to right, rgba(30, 58, 138, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(30, 58, 138, 0.05) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+
+  .medical-grid-fade {
+    -webkit-mask-image: radial-gradient(
+      ellipse 80% 70% at 50% 0%,
+      #000 40%,
+      transparent 100%
+    );
+    mask-image: radial-gradient(
+      ellipse 80% 70% at 50% 0%,
+      #000 40%,
+      transparent 100%
+    );
+  }
+
+  /* Gradient hairline divider */
+  .gradient-rule {
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      var(--color-accent-400),
+      transparent
+    );
+  }
+
+  .text-gradient {
+    background: linear-gradient(
+      120deg,
+      var(--color-brand-700),
+      var(--color-accent-600)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Dark, high-contrast tech gradient for display headings */
+  .text-gradient-deep {
+    background: linear-gradient(
+      115deg,
+      var(--color-brand-950) 0%,
+      var(--color-brand-700) 55%,
+      var(--color-accent-700) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Light gradient text for dark backgrounds (hero headline on deep navy) */
+  .text-gradient-light {
+    background: linear-gradient(
+      100deg,
+      var(--color-accent-200) 0%,
+      #ffffff 45%,
+      var(--color-accent-300) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Brand accent hairline that fades in on card hover */
+  .card-accent {
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    height: 2px;
+    background: linear-gradient(
+      to right,
+      var(--color-brand-600),
+      var(--color-accent-500)
+    );
+    opacity: 0.18;
+    transition:
+      opacity 0.2s ease,
+      height 0.2s ease;
+  }
+  .group:hover .card-accent {
+    height: 3px;
+    opacity: 0.72;
+  }
+
+  /* Hero entrance — CSS-driven so content is never left invisible if JS
+     is slow/absent; `both` fill-mode settles on the visible end state. */
+  @keyframes heroRise {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .anim-rise {
+    animation: heroRise 0.6s var(--ease-out-soft) both;
+  }
+
+  /* Hero two-image gradual crossfade (clean <-> AI activated). CSS-driven so it
+     runs reliably regardless of JS timing. */
+  @keyframes heroFade {
+    0%,
+    100% {
+      opacity: 0;
+    }
+    32%,
+    82% {
+      opacity: 1;
+    }
+  }
+  .hero-fade {
+    animation: heroFade 11s ease-in-out infinite;
+  }
+
+  /* ---- Tech-motion utility set ---- */
+
+  .anim-float {
+    transform: translateY(0);
+  }
+  .anim-float-delay {
+    transform: translateY(0);
+  }
+
+  /* static ambient glows for clinical sections */
+  .anim-drift {
+    opacity: 0.72;
+  }
+  .anim-drift-slow {
+    opacity: 0.64;
+  }
+
+  .anim-scan {
+    top: 42%;
+    opacity: 0.26;
+  }
+
+  /* stable status dot */
+  .dot-pulse {
+    box-shadow: 0 0 0 3px rgba(8, 171, 210, 0.16);
+  }
+
+  /* Static clinical flow connector. */
+  .anim-dash {
+    stroke-dasharray: 0;
+    opacity: 0.75;
+  }
+
+  .anim-beam {
+    left: 35%;
+    opacity: 0.42;
+  }
+
+  /* slow technical grid movement for clinical AI sections */
+  @keyframes gridPan {
+    0% {
+      background-position: 0 0, 0 0;
+    }
+    100% {
+      background-position: 72px 0, 0 72px;
+    }
+  }
+
+  .tech-grid-motion {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+
+  .tech-grid-motion::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(to right, rgba(8, 171, 210, 0.075) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(30, 58, 138, 0.055) 1px, transparent 1px);
+    background-size: 72px 72px;
+    opacity: 0.55;
+    -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 45%, #000 0%, transparent 78%);
+    mask-image: radial-gradient(ellipse 85% 75% at 50% 45%, #000 0%, transparent 78%);
+  }
+
+  .tech-grid-motion > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Card-level interaction: quiet clinical focus, no sweeping sheen. */
+  .tech-card {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .tech-card::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    z-index: 2;
+    pointer-events: none;
+    border-radius: inherit;
+    border: 1px solid rgba(8, 171, 210, 0);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0);
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .tech-card:hover::after,
+  .tech-card:focus-within::after {
+    border-color: rgba(8, 171, 210, 0.28);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  }
+
+  .button-shine {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .button-shine::after {
+    content: "";
+    position: absolute;
+    inset-block: -35%;
+    left: -45%;
+    width: 36%;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+      100deg,
+      transparent,
+      rgba(255, 255, 255, 0.5),
+      transparent
+    );
+    transform: skewX(-18deg) translateX(0);
+    opacity: 0;
+    transition:
+      opacity 0.2s ease,
+      transform 0.75s var(--ease-out-soft);
+  }
+
+  .button-shine:hover::after,
+  .button-shine:focus-visible::after {
+    opacity: 1;
+    transform: skewX(-18deg) translateX(390%);
+  }
+
+  .tech-panel-scan {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tech-panel-scan::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    top: 8%;
+    height: 28%;
+    pointer-events: none;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(37, 200, 236, 0.08),
+      rgba(255, 255, 255, 0.14),
+      transparent
+    );
+    mix-blend-mode: screen;
+  }
+
+  .anim-subtle-glow {
+    box-shadow: 0 16px 42px rgba(15, 27, 61, 0.1);
+  }
+
+  /* =====================================================================
+     Redesign polish utilities (hybrid dark/light system)
+     ===================================================================== */
+
+  /* Aurora glow field for dark hero / CTA bands — two drifting blooms.
+     Pure pseudo-elements, GPU-friendly, reduced-motion gated globally. */
+  .hero-aurora::before,
+  .hero-aurora::after {
+    content: "";
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(72px);
+    pointer-events: none;
+    z-index: -1;
+  }
+  .hero-aurora::before {
+    width: 42rem;
+    height: 42rem;
+    top: -16rem;
+    left: -11rem;
+    background: radial-gradient(
+      circle at 30% 30%,
+      rgba(37, 200, 236, 0.22),
+      transparent 60%
+    );
+  }
+  .hero-aurora::after {
+    width: 40rem;
+    height: 40rem;
+    bottom: -18rem;
+    right: -9rem;
+    background: radial-gradient(
+      circle at 70% 70%,
+      rgba(59, 108, 244, 0.2),
+      transparent 62%
+    );
+  }
+
+  /* Fine scan-grid for dark bands (denser than .medical-grid). */
+  .scan-grid {
+    background-image:
+      linear-gradient(rgba(125, 175, 255, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(125, 175, 255, 0.06) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Frosted glass surfaces. */
+  .glass {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+  .glass-light {
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+
+  .anim-scan-x {
+    transform: translateX(12%);
+    opacity: 0.22;
+  }
+
+  .anim-scan-y {
+    transform: translateY(24%);
+    opacity: 0.2;
+  }
+
+  /* Tumor / lesion highlight: static emphasis, no pulsing alarm effect. */
+  .anim-lesion {
+    transform-origin: center;
+    transform-box: fill-box;
+    opacity: 0.86;
+  }
+
+  /* Staggered hero entrance — opacity:0 start, settles visible via `forwards`.
+     `--rise-delay` controls the per-element offset. Reduced-motion collapses
+     the duration globally, so content always lands visible. */
+  .rise-in {
+    opacity: 0;
+    animation: heroRise 0.7s var(--ease-out-soft) forwards;
+    animation-delay: var(--rise-delay, 0s);
+  }
+
+  /* Section seam — a soft gradient hairline used to transition dark↔light. */
+  .seam-top {
+    position: relative;
+  }
+  .seam-top::before {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(8, 171, 210, 0.5),
+      transparent
+    );
+  }
+
+  /* Numeric / spec readouts. */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Honor reduced-motion globally */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  /* reduced motion: show the AI-assisted frame statically (no crossfade) */
+  .hero-fade {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+}
