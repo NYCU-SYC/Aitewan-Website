@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { Reveal } from "@/components/ui/Reveal";
 import { ctas } from "@/data/site";
+import { assetPath } from "@/lib/asset-path";
 
 const highlights = [
   "三類取證腫瘤：腦轉移瘤、腦膜瘤、聽神經瘤",
@@ -25,7 +26,7 @@ export function ProductShowcase() {
           />
           <div className="tech-panel-scan anim-subtle-glow overflow-hidden rounded-2xl border border-line bg-white p-3 shadow-xl shadow-brand-900/10">
             <Image
-              src="/images/mri-modalities.png"
+              src={assetPath("/images/mri-modalities.png")}
               alt="DeepBT 支援之雙參數 MRI 輸入：T1W+C 顯影後 T1 與 T2W 影像"
               width={620}
               height={620}

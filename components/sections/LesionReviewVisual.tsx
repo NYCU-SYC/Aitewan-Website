@@ -1,6 +1,7 @@
 import Image from "next/image";
+import { assetPath } from "@/lib/asset-path";
 
-const lesionReviewImage = "/images/Gemini_Generated_Image_q49ip5q49ip5q49i.png";
+const lesionReviewImage = assetPath("/images/Gemini_Generated_Image_q49ip5q49ip5q49i.png");
 
 /**
  * Lesion-level review visual for the Technology page.

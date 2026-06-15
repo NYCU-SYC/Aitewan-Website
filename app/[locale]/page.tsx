@@ -16,6 +16,7 @@ import { WorkflowDiagram } from "@/components/sections/WorkflowDiagram";
 import { CTASection } from "@/components/sections/CTASection";
 import { getWhyUs } from "@/data/services";
 import { getCtas } from "@/data/site";
+import { assetPath } from "@/lib/asset-path";
 import { isLocale, type Locale } from "@/lib/i18n";
 
 export default async function HomePage({
@@ -96,7 +97,7 @@ export default async function HomePage({
         <Reveal delay={0.05}>
           <figure className="relative mx-auto mb-12 max-w-4xl overflow-hidden rounded-2xl border border-line bg-white shadow-xl shadow-brand-900/8">
             <Image
-              src="/images/hero-ai-assisted.png"
+              src={assetPath("/images/hero-ai-assisted.png")}
               alt={t(
                 "醫師於工作站審閱 AI 輔助之腦部 MRI 圈註、分割遮罩與報告草稿的臨床情境示意",
                 "Clinical scenario showing a physician reviewing AI-assisted brain MRI contours, segmentation masks and report drafts at a workstation",

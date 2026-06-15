@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { assetPath } from "@/lib/asset-path";
 
 /**
  * Company logo. Uses the official AItewan mark — never recoloured or distorted.
@@ -15,7 +16,7 @@ export function Logo({
   priority?: boolean;
   alt?: string;
 }) {
-  const src = variant === "white" ? "/aitewan-logo-white.png" : "/aitewan-logo.svg";
+  const src = assetPath(variant === "white" ? "/aitewan-logo-white.png" : "/aitewan-logo.svg");
   const size = variant === "white" ? { width: 214, height: 100 } : { width: 1082, height: 506 };
 
   if (variant === "white") {

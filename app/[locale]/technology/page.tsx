@@ -12,6 +12,7 @@ import { AiPipelineGraphic } from "@/components/sections/AiPipelineGraphic";
 import { LesionReviewVisual } from "@/components/sections/LesionReviewVisual";
 import { modalities, dicomOutputs } from "@/data/product";
 import { ctas } from "@/data/site";
+import { assetPath } from "@/lib/asset-path";
 
 export function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   return getRouteMetadata("technology", params);
@@ -176,7 +177,7 @@ export default async function TechnologyPage({ params }: { params: Promise<{ loc
           <Reveal delay={0.1}>
             <div className="overflow-hidden rounded-2xl border border-line bg-brand-950 p-2 shadow-xl">
               <Image
-                src="/images/ai-dashboard.png"
+                src={assetPath("/images/ai-dashboard.png")}
                 alt="DeepBT 腫瘤體積隨時間變化之量化分析儀表板示意"
                 width={1100}
                 height={1100}

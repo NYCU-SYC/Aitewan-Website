@@ -10,10 +10,11 @@ import { Icon } from "@/components/ui/Icon";
 import { getHeroBadges } from "@/data/home";
 import { getCtas } from "@/data/site";
 import { useLocale } from "@/components/ui/useLocale";
+import { assetPath } from "@/lib/asset-path";
 import type { Locale } from "@/lib/i18n";
 
-const AI_IMG = "/images/hero-ai-assisted.png";
-const CLEAN_IMG = "/images/hero-clean.png";
+const AI_IMG = assetPath("/images/hero-ai-assisted.png");
+const CLEAN_IMG = assetPath("/images/hero-clean.png");
 const HERO_ALT =
   "醫師檢視腦部 MRI；DeepBT Detector-Plus 呈現 AI 輔助腦部腫瘤初步圈註與臨床摘要草稿";
 

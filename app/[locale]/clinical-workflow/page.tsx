@@ -14,6 +14,7 @@ import { CTASection } from "@/components/sections/CTASection";
 import { ComplianceNotice } from "@/components/ui/ComplianceNotice";
 import { workflowIntro, implementationBenefits } from "@/data/workflow";
 import { ctas } from "@/data/site";
+import { assetPath } from "@/lib/asset-path";
 
 export function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   return getRouteMetadata("clinical-workflow", params);
@@ -58,7 +59,7 @@ export default async function WorkflowPage({ params }: { params: Promise<{ local
         <Reveal>
           <div className="overflow-hidden rounded-2xl border border-line bg-white p-3 shadow-sm sm:p-5">
             <Image
-              src="/images/workflow-diagram.png"
+              src={assetPath("/images/workflow-diagram.png")}
               alt="AI 輔助腦部腫瘤圈註串接臨床放射治療流程：影像擷取 → 影像匯入 → AI 輔助圈註 → 治療計畫 → 放射治療"
               width={1600}
               height={1067}

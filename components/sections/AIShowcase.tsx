@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Icon, type IconName } from "@/components/ui/Icon";
 import { Reveal } from "@/components/ui/Reveal";
+import { assetPath } from "@/lib/asset-path";
 import type { Locale } from "@/lib/i18n";
 
 const capabilities: { icon: IconName; title: string; body: string }[] = [
@@ -147,7 +148,7 @@ export function AIShowcase({ locale = "zh-TW" }: { locale?: Locale }) {
               {/* dashboard in glass frame */}
               <div className="relative z-10 overflow-hidden rounded-2xl border border-white/15 bg-white/[0.04] p-2 shadow-2xl shadow-brand-950/50 backdrop-blur-sm">
                 <Image
-                  src="/images/ai-dashboard.png"
+                  src={assetPath("/images/ai-dashboard.png")}
                   alt={t(
                     "DeepBT AI 腦部腫瘤分析儀表板：軸狀 MRI 腫瘤輪廓與隨時間之體積變化趨勢圖",
                     "DeepBT AI brain tumor analysis dashboard showing axial MRI contours and tumor-volume trend over time",
@@ -170,7 +171,7 @@ export function AIShowcase({ locale = "zh-TW" }: { locale?: Locale }) {
               </div>
               <div className="absolute bottom-0 -right-4 z-20 hidden w-36 rounded-2xl border border-accent-300/30 bg-brand-950/70 p-1.5 shadow-2xl shadow-accent-950/40 backdrop-blur-md sm:block lg:-right-8 lg:w-44">
                 <Image
-                  src="/images/brain-3d.png"
+                  src={assetPath("/images/brain-3d.png")}
                   alt={t("3D 腦部模型與腫瘤區域標示", "3D brain model with tumor-region marker")}
                   width={1200}
                   height={900}

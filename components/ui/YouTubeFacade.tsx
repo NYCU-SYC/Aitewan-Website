@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { Icon } from "./Icon";
+import { assetPath } from "@/lib/asset-path";
 
 /**
  * Lightweight YouTube embed (facade pattern): shows a poster image + play
@@ -43,7 +44,7 @@ export function YouTubeFacade({
           className="absolute inset-0 h-full w-full cursor-pointer"
         >
           <Image
-            src={poster}
+            src={assetPath(poster)}
             alt={title}
             fill
             sizes="(min-width: 1024px) 900px, 100vw"

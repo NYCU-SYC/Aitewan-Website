@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { assetPath } from "@/lib/asset-path";
 import { useState } from "react";
 
 /**
@@ -25,14 +26,14 @@ export function BeforeAfterSlider({
   return (
     <div className="relative aspect-[2600/1450] select-none overflow-hidden rounded-2xl border border-line shadow-xl shadow-brand-900/10">
       {/* before（base） */}
-      <Image src={beforeSrc} alt={beforeLabel} fill sizes="(min-width: 1024px) 900px, 100vw" className="object-cover" />
+      <Image src={assetPath(beforeSrc)} alt={beforeLabel} fill sizes="(min-width: 1024px) 900px, 100vw" className="object-cover" />
       {/* after（clipped from the right side of the divider） */}
       <div
         aria-hidden
         className="absolute inset-0"
         style={{ clipPath: `inset(0 0 0 ${pos}%)` }}
       >
-        <Image src={afterSrc} alt="" fill sizes="(min-width: 1024px) 900px, 100vw" className="object-cover" />
+        <Image src={assetPath(afterSrc)} alt="" fill sizes="(min-width: 1024px) 900px, 100vw" className="object-cover" />
       </div>
 
       {/* divider + handle */}

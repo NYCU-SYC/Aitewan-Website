@@ -15,6 +15,7 @@ import { ComplianceNotice } from "@/components/ui/ComplianceNotice";
 import { keyFeatures, tumorTypes, processSteps, productIntro } from "@/data/product";
 import { hospitals } from "@/data/evidence";
 import { compliance, getCtas } from "@/data/site";
+import { assetPath } from "@/lib/asset-path";
 import { isLocale, localizeHref } from "@/lib/i18n";
 
 export function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -74,8 +75,8 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
           </Reveal>
           <Reveal delay={0.1}>
             <div className="relative overflow-hidden rounded-2xl border border-line bg-brand-950 shadow-xl shadow-brand-900/15">
-              <Image
-                src="/images/brain-3d.png"
+                <Image
+                  src={assetPath("/images/brain-3d.png")}
                 alt="3D 腦部模型與 AI 標示之腫瘤區域示意"
                 width={1200}
                 height={900}
