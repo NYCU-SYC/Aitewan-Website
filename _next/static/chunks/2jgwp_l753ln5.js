@@ -1,0 +1,1 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,26269,t=>{"use strict";t.s(["assetPath",0,function(t){return!t.startsWith("/")||t.startsWith("//")?t:`/Aitewan-Website${t}`}])}]);
