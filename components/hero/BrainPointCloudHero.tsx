@@ -7,6 +7,7 @@ import { useProgress } from "@react-three/drei";
 import { useBrainData, BrainPoints, TumorCluster } from "./BrainPointCloud";
 import { Starfield } from "./Starfield";
 import { assetPath } from "@/lib/asset-path";
+import { signalHeroReady } from "@/lib/heroReady";
 
 const MODEL_PATH = assetPath("/models/brain.glb");
 
@@ -15,8 +16,16 @@ function BrainScene({ count, offsetX }: { count: number; offsetX: number }) {
   const data = useBrainData(count);
   const g = useRef<THREE.Group>(null);
   const t0 = useRef<number | null>(null);
+  const readyFired = useRef(false);
 
   useFrame((state, delta) => {
+    // The model has loaded, been sampled and is now painting its first frame —
+    // tell the preloader it can reveal the page.
+    if (!readyFired.current) {
+      readyFired.current = true;
+      signalHeroReady();
+    }
+
     const grp = g.current;
     if (!grp) return;
     // smooth entrance: scale + fade-rotate in over ~1.6s
@@ -164,6 +173,12 @@ export function BrainPointCloudHero() {
     if (status !== "ok") return;
     const id = requestAnimationFrame(() => setShown(true));
     return () => cancelAnimationFrame(id);
+  }, [status]);
+
+  // if the model is missing there will be no first frame to wait on — release
+  // the preloader so it never hangs on the loading screen.
+  useEffect(() => {
+    if (status === "missing") signalHeroReady();
   }, [status]);
 
   const { count, offsetX, starDensity } = useMemo(() => {

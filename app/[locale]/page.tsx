@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { HomeHero } from "@/components/sections/HomeHero";
+import { HeroPreloader } from "@/components/hero/HeroPreloader";
 import { Section } from "@/components/sections/Section";
 import { DualCore } from "@/components/sections/DualCore";
 import { ProblemCards } from "@/components/sections/ProblemCards";
@@ -34,6 +35,10 @@ export default async function HomePage({
 
   return (
     <>
+      {/* 0 · Branded intro preloader — covers the page (logo + progress bar)
+          until the 3D brain hero has rendered, then fades away. */}
+      <HeroPreloader locale={locale} />
+
       {/* 1 · Hero (dark) */}
       <HomeHero locale={locale} />
 
